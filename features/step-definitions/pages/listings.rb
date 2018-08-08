@@ -70,13 +70,14 @@ class ListingsPage
     find(APPLY_BUTTON).click
   end
 
+  #this is needed when assets are lazy loaded only on browser focus
   def load_all_listings
     page.execute_script 'window.scrollBy(0,750)'
-    sleep(0.5)
+    wait_to_render
     page.execute_script 'window.scrollBy(0,750)'
-    sleep(0.5)
+    wait_to_render
     page.execute_script 'window.scrollBy(0,750)'
-    sleep(0.5)
+    wait_to_render
   end
 
   def validate_listed_pages_are_sold
@@ -97,6 +98,11 @@ class ListingsPage
     listed_home_details = all(LISTED_HOUSES).map {|a| a.text}
     houses_not_sold = listed_home_details.reject {|beds| beds.include? "4\nBeds"}
     expect(houses_not_sold).to be_empty, "Expected 4 bedrooms for all results: #{houses_not_sold}"
+  end
+
+  private
+  def wait_to_render
+    sleep(0.3)
   end
 
 end

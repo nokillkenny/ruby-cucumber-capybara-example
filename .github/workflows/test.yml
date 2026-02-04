@@ -40,7 +40,7 @@ jobs:
 
   notify-showcase:
     needs: test
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    if: always() && !cancelled() && github.ref == 'ref/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Trigger test-showcase

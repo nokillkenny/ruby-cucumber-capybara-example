@@ -40,7 +40,7 @@ jobs:
 
   notify-showcase:
     needs: test
-    if: always() && !cancelled() && github.ref == 'refs/heads/main'
+    if: always() && !cancelled() && (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch')
     runs-on: ubuntu-latest
     steps:
       - name: Trigger test-showcase

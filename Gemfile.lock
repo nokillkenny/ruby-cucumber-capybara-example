@@ -44,6 +44,7 @@ GEM
     dotenv (3.2.0)
     ffi (1.17.3-arm64-darwin)
     ffi (1.17.3-x86_64-darwin)
+    ffi (1.17.3-x86_64-linux-gnu)
     logger (1.7.0)
     matrix (0.4.3)
     memoist3 (1.0.0)
@@ -52,6 +53,8 @@ GEM
     nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.10-x86_64-linux-gnu)
       racc (~> 1.4)
     parallel (1.27.0)
     parallel_tests (4.10.1)
@@ -93,6 +96,7 @@ GEM
 PLATFORMS
   arm64-darwin
   x86_64-darwin
+  x86_64-linux
 
 DEPENDENCIES
   capybara (~> 3.40)
@@ -104,4 +108,4 @@ DEPENDENCIES
   selenium-webdriver (~> 4.27)
 
 BUNDLED WITH
-   2.5.1
+   2.4.1

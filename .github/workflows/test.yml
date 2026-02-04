@@ -1,0 +1,52 @@
+name: Cucumber Tests
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run tests
+        env:
+          BASE_URL: ${{ vars.BASE_URL || 'https://the-internet.herokuapp.com' }}
+          TEST_USER: ${{ secrets.TEST_USER }}
+          TEST_PASS: ${{ secrets.TEST_PASS }}
+        run: |
+          mkdir -p reports
+          bundle exec cucumber --tags "not @error-handling" --format html --out reports/cucumber.html --publish-quiet
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cucumber-report
+          path: reports/
+          retention-days: 30
+
+  notify-showcase:
+    needs: test
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger test-showcase
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.SHOWCASE_PAT }}
+          repository: nokillkenny/test-showcase
+          event-type: test-completed
+          client-payload: '{"repo": "ruby-cucumber-capybara-example", "artifact": "cucumber-report"}'

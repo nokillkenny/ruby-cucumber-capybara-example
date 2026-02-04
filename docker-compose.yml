@@ -1,0 +1,6 @@
+services:
+  tests:
+    build: .
+    env_file: .env.local
+    volumes:
+      - ./reports:/app/reports

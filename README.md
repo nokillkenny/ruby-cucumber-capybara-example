@@ -1,37 +1,58 @@
-An example for running Cucumber tests with Capybara
-============================================================
+# Ruby Cucumber Capybara Example
 
-The setup below is intended for running on Macbook OSX. 
+![CI](https://github.com/nokillkenny/ruby-cucumber-capybara-example/actions/workflows/test.yml/badge.svg)
 
-You will need this before running: 
+BDD test automation framework using Cucumber 9.x with Capybara and Selenium WebDriver.
 
-    * Homebrew for OSX 
-    * Ruby 2.4+
+## Stack
+- Ruby 3.x
+- Cucumber 9.2
+- Capybara 3.40
+- Selenium WebDriver 4.x (headless Chrome)
+- parallel_tests for concurrent execution
 
-To install Homebrew, in your terminal, run the command
- 
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    
-Type `brew` in your terminal to see if homebrew is installed. If it is not a known command, try restarting your terminal and run the command again.    
+## Setup
 
-To check which version of Ruby you have run this command in terminal
+```bash
+bundle install
+```
 
-    ruby -v
+## Local Configuration
 
-If you don't have a preference to what version Ruby you're using, this command will install the most stable version of ruby available
+Create `.env.local` with your test credentials:
 
-    brew install ruby
-     
-Firefox is installed as the default browser to run selenium tests. You will need Chromedriver installed to run the test on Chrome:     
+```
+BASE_URL=https://the-internet.herokuapp.com
+TEST_USER=tomsmith
+TEST_PASS=SuperSecretPassword!
+```
 
-    brew install chromedriver
-    
-To run the test in chrome, change the broswer instance in `env.rb` from `:browser => :firefox` to `:browser => :chrome`
-     
-Once you have completed the above steps, go to the project root folder and run this command to download ruby dependencies:  
+> These are the public demo credentials for [the-internet.herokuapp.com](https://the-internet.herokuapp.com/login)
 
-    bundle install 
-    
-Use this command to run the UI test:
+## Run Tests
 
-    bundle exec cucumber features/
+```bash
+# Local
+bundle exec cucumber
+
+# Docker
+docker compose up --build
+
+# Parallel
+bundle exec parallel_cucumber features/
+```
+
+## Structure
+
+```
+features/
+├── *.feature           # Gherkin scenarios
+├── step_definitions/   # Step implementations
+└── support/
+    ├── env.rb          # Capybara/driver config
+    └── pages/          # Page Object classes
+```
+
+## CI
+
+Tests run in GitHub Actions with credentials injected via repository secrets (`TEST_USER`, `TEST_PASS`). HTML reports are uploaded as artifacts and aggregated to a central dashboard via `repository_dispatch`.

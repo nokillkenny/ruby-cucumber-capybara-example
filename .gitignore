@@ -1,2 +1,6 @@
-.idea/
-setup
+reports/
+*.log
+.bundle/
+vendor/
+.env
+.env.local

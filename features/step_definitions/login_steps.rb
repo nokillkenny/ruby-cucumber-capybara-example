@@ -19,9 +19,9 @@ When('I submit the login form') do
 end
 
 Then('I see the secure area') do
-  expect(login_page.secure_area_visible?).to be true
+  login_page.assert_secure_area_visible
 end
 
 Then('I see an error message') do
-  expect(login_page.error_visible?).to be true
+  login_page.assert_error_visible
 end

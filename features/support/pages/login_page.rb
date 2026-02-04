@@ -31,11 +31,11 @@ class LoginPage < BasePage
     find(LOGIN_BUTTON).click
   end
 
-  def secure_area_visible?
-    has_css?(SECURE_AREA, text: 'Secure Area')
+  def assert_secure_area_visible
+    assert_css?(SECURE_AREA, text: 'Secure Area')
   end
 
-  def error_visible?
-    has_css?(FLASH_MESSAGE, text: 'invalid')
+  def assert_error_visible
+    assert_css?(FLASH_MESSAGE, text: 'invalid')
   end
 end

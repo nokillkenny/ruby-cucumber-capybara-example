@@ -32,10 +32,10 @@ class LoginPage < BasePage
   end
 
   def assert_secure_area_visible
-    assert_css(SECURE_AREA, text: 'Secure Area')
+    expect(page).to have_css(SECURE_AREA, text: 'Secure Area', wait: WAIT_TIMEOUT)
   end
 
   def assert_error_visible
-    assert_css(FLASH_MESSAGE, text: 'invalid')
+    expect(page).to have_css(FLASH_MESSAGE, text: 'invalid', wait: WAIT_TIMEOUT)
   end
 end

@@ -32,10 +32,10 @@ class LoginPage < BasePage
   end
 
   def assert_secure_area_visible
-    assert_css?(SECURE_AREA, text: 'Secure Area')
+    assert_css(SECURE_AREA, text: 'Secure Area')
   end
 
   def assert_error_visible
-    assert_css?(FLASH_MESSAGE, text: 'invalid')
+    assert_css(FLASH_MESSAGE, text: 'invalid')
   end
 end

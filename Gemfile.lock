@@ -79,12 +79,12 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.7)
-    rubyzip (2.4.1)
-    selenium-webdriver (4.32.0)
+    rubyzip (3.2.2)
+    selenium-webdriver (4.40.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2, < 3.0)
+      rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
     sys-uname (1.4.1)
       ffi (~> 1.1)
@@ -105,7 +105,7 @@ DEPENDENCIES
   dotenv (~> 3.1)
   parallel_tests (~> 4.7)
   rspec (~> 3.13)
-  selenium-webdriver (~> 4.27)
+  selenium-webdriver (~> 4.40)
 
 BUNDLED WITH
    2.4.1

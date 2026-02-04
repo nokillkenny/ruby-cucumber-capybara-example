@@ -32,7 +32,8 @@ class LoginPage < BasePage
   end
 
   def assert_secure_area_visible
-    expect(page).to have_css(SECURE_AREA, text: 'Secure Area', wait: WAIT_TIMEOUT)
+    expect(page).to have_current_path('/secure', wait: WAIT_TIMEOUT)
+    expect(page).to have_css(SECURE_AREA, text: 'Secure Area')
   end
 
   def assert_error_visible

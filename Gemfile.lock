@@ -80,7 +80,7 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.7)
     rubyzip (3.2.2)
-    selenium-webdriver (4.40.0)
+    selenium-webdriver (4.41.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
@@ -105,7 +105,7 @@ DEPENDENCIES
   dotenv (~> 3.1)
   parallel_tests (~> 5.5)
   rspec (~> 3.13)
-  selenium-webdriver (~> 4.40)
+  selenium-webdriver (~> 4.41)
 
 BUNDLED WITH
    2.4.1
